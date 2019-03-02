@@ -5,14 +5,33 @@ package Monster;
  * Explanation: This is an abstract class that outlines monster
  */
 
+import Ability.Attack;
+
 import java.util.HashMap;
 import java.util.Objects;
+import java.util.Random;
 
 public abstract class Monster {
-    Integer hp;
-    Integer xp;
-    Integer maxHp;
-    HashMap<String, Integer> items;
+    private Integer hp;
+    private Integer xp;
+    private Integer maxHp;
+    private HashMap<String, Integer> items;
+    Integer agi = 0;
+    Integer def = 0;
+    Integer str = 0;
+    Attack attack;
+
+    public Monster(Integer maxHp, Integer xp, HashMap<String, Integer> items) {
+        this.maxHp = maxHp;
+        hp = this.maxHp;
+        this.xp = xp;
+        this.items = items;
+    }
+
+
+    public Integer attackTarget(Monster target){
+        return attack.attack(target);
+    }
 
     public Integer getHp() {
         return hp;
@@ -26,8 +45,8 @@ public abstract class Monster {
         return xp;
     }
 
-    public Integer getMaxHp() {
-        return maxHp;
+    public Integer getXP(){
+        return xp;
     }
 
     public HashMap<String, Integer> getItems() {
@@ -38,12 +57,38 @@ public abstract class Monster {
         this.items = items;
     }
 
-    public Monster(Integer maxHp, Integer xp, HashMap<String, Integer> items) {
-        this.maxHp = maxHp;
-        hp = this.maxHp;
-        this.xp = xp;
-        this.items = items;
+    public Integer getMaxHp() {
+        return maxHp;
     }
+
+    public Integer getAgi() {
+        return agi;
+    }
+
+    public Integer getDef() {
+        return def;
+    }
+
+    public Integer getStr() {
+        return str;
+    }
+
+    /**
+     * @param min an integer
+     * @param max an integer
+     * @return a random integer between min and max
+     */
+    public Integer getAttribute(Integer min, Integer max){
+        Random rand = new Random();
+        if(min > max){
+            Integer temp = min;
+            min = max;
+            max = temp;
+        }
+        // Returns a random number between min and max inclusive
+        return rand.nextInt(max-min)+min;
+    }
+
 
     @Override
     public boolean equals(Object o) {
