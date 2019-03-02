@@ -1,9 +1,11 @@
-package Monster;
 /**
  * Name: Joey Thomas
  * Date: 3/1/2019
  * Explanation: This class drives all extentions of Monster.Monster and does a couple tests.
  */
+
+import Monster.*;
+import Ability.*;
 
 import java.util.HashMap;
 import java.util.ArrayList;
